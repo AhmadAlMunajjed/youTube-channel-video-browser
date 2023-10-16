@@ -1,6 +1,11 @@
 {
   "name": "you-tube-channelvideo-browser",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "single page application that enables users to browse videos from a specific YouTube channel.",
+  "author": {
+    "name": "AHmad Almunajjed",
+    "email": "almunajjedahmad@gmail.com"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
