@@ -1,0 +1,14 @@
+<div class="card-outter">
+    <div class="card">
+        <div>
+            <textarea style="height: 80px;padding-top: 6.5px;" required [(ngModel)]="note"></textarea>
+        </div>
+        <div>
+            <h6 class="title" [innerHTML]="video.title"></h6>
+        </div>
+        <div class="footer">
+            <button (click)="saved.emit()">Save</button>
+            <button (click)="canceld.emit()">Cancel</button>
+        </div>
+    </div>
+</div>

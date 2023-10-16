@@ -1,13 +1,13 @@
 <div class="card-outter">
     <div class="card">
-        <div>
+        <div style="padding-top: 2px;">
             <img [src]="video.imageUrl" [alt]="video.title">
         </div>
         <div>
             <h6 class="title" [innerHTML]="video.title"></h6>
         </div>
         <div class="footer">
-            <button>Edit note</button>
+            <button (click)="editCLicked.emit()">Edit note</button>
             <button>Reorder</button>
         </div>
     </div>

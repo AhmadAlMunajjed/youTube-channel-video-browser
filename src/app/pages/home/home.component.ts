@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SharedModule } from '@shared/modules';
 import { HttpClientModule } from '@angular/common/http';
 import { YoutubeService } from '@shared/services';
-import { VideoCardComponent } from '@components';
+import { VideoCardComponent, VideoNoteFormComponent } from '@components';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,8 @@ import { VideoCardComponent } from '@components';
     HttpClientModule,
     
     // components
-    VideoCardComponent
+    VideoCardComponent,
+    VideoNoteFormComponent
   ],
   providers: [
     YoutubeService
@@ -70,7 +71,7 @@ export class HomeComponent {
 
   }
 
-  editNote() {
+  editNote(video: any) {
 
   }
 }

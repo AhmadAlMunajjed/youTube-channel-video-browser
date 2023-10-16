@@ -25,7 +25,15 @@
 <hr>
 
 <div *ngIf="!loading" style="text-align: center;">
-    <app-video-card *ngFor="let video of videos" style="display: inline-block;" [video]="video"></app-video-card>
+    <div *ngFor="let video of videos" style="display: inline-block;">
+        <app-video-card (editCLicked)="video.editMode = true" *ngIf="!video.editMode" [video]="video"
+            style="display: inline-block;">
+        </app-video-card>
+
+        <app-video-note-form *ngIf="video.editMode" (saved)="editNote(video)" (canceld)="video.editMode = false"
+            [video]="video" style="display: inline-block;">
+        </app-video-note-form>
+    </div>
 </div>
 
 <div class="loading" *ngIf="loading">
