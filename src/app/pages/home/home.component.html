@@ -24,6 +24,10 @@
 
 <hr>
 
-<div style="text-align: center;">
+<div *ngIf="!loading" style="text-align: center;">
     <app-video-card *ngFor="let video of videos" style="display: inline-block;" [video]="video"></app-video-card>
+</div>
+
+<div class="loading" *ngIf="loading">
+    loading...
 </div>
