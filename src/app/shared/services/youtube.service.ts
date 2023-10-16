@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment.development';
 export class YoutubeService {
 
   //#region varialbes
-  private maxResults = 10;
+  private maxResults = 30;
   //#endregion
 
   constructor(

@@ -4,14 +4,18 @@
 
 <div>
     <label>Enter YouTube Channel ID</label>
-    <div style="display: inline-block;">
-        <input type="text">
-        <button>Fetch</button>
+    <form [noValidate]="false" style="display: inline-block;">
+        <input required [(ngModel)]="channelId" type="text" [ngModelOptions]="{standalone: true}">
+        <button type="submit" (click)="fetchVideos()">Fetch/Refresh</button>
+    </form>
+
+    <div>
+        <label>ex: UCz4tgANd4yy8Oe0iXCdSWfA</label>
     </div>
 
-    <label>
-        ex: UCz4tgANd4yy8Oe0iXCdSWfA
-    </label>
+    <div>
+        <label *ngIf="error" style="color: red;">An error accourd. Try again!</label>
+    </div>
 </div>
 
 <div>
@@ -20,8 +24,6 @@
 
 <hr>
 
-<div>
-    <div  *ngFor="let video of videos">
-
-    </div>
+<div style="text-align: center;">
+    <app-video-card *ngFor="let video of videos" style="display: inline-block;" [video]="video"></app-video-card>
 </div>
