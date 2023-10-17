@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YoutubeService } from '@shared/services';
 import { VideoCardComponent, VideoNoteFormComponent } from '@components';
 import { Video } from '@shared/models';
+import Sortable from "sortablejs";
 
 @Component({
   selector: 'app-home',
@@ -33,13 +34,16 @@ export class HomeComponent {
   error: boolean = false;
   //#endregion
 
-  /**
-   *
-   */
   constructor(
     private youtubeService: YoutubeService
   ) {
 
+  }
+
+  initSortable() {
+    const sortableElement = document.getElementById('sortableElement');
+    if (sortableElement == null) return;
+    new Sortable(sortableElement, { animation: 200 });
   }
 
   fetchVideos() {
@@ -61,6 +65,9 @@ export class HomeComponent {
           // immutableNote: this.getNote(item.id.videoId),
           editMode: false,
         });
+        setTimeout(() => {
+          this.initSortable();
+        }, 200);
       });
     }, () => {
       this.loading = false;

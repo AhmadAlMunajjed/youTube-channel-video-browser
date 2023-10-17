@@ -22,9 +22,7 @@
     <h4>Videos (You can reorder the videos, long press to be able to drag it.)</h4>
 </div>
 
-<hr>
-
-<div *ngIf="!loading" style="text-align: center;">
+<div id="sortableElement" *ngIf="!loading" style="text-align: center;">
     <div *ngFor="let video of videos" style="display: inline-block;">
         <app-video-card (editCLicked)="video.editMode = true" *ngIf="!video.editMode" [video]="video"
             style="display: inline-block;">
