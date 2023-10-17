@@ -107,11 +107,34 @@ export class HomeComponent {
     });
   }
 
-  reorder() {
-
-  }
-
   editNote(note: string, video: Video) {
-    return '';
+    var notesString = localStorage.getItem('notes');
+    var notes: any[] = [];
+    if (notesString) {
+      notes = JSON.parse(notesString);
+    }
+    const noteIndex = notes.findIndex(x => x.Id == video.id);
+    if (noteIndex == -1) {
+      notes.push({
+        Id: video.id,
+        Note: note
+      });
+    } else {
+      notes[noteIndex].Note = note;
+    }
+    console.log('notes', notes);
+    localStorage.setItem('notes', JSON.stringify(notes));
+    video.editMode = false;
+    video.note = note;
   }
+
+  getNote(videoId: string): string {
+    var notesString = localStorage.getItem('notes');
+    if (!notesString) return '';
+    var notes = JSON.parse(notesString);
+    const videNote = notes.find((x: any) => x.Id == videoId)?.Note;
+    console.log('videNote', videNote);
+    return videNote;
+  }
+
 }

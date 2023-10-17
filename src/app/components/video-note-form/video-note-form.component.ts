@@ -16,4 +16,10 @@ export class VideoNoteFormComponent {
   @Input() video!: any;
   @Output() saved = new EventEmitter<string>();
   @Output() canceld = new EventEmitter();
+
+  ngAfterViewInit() {
+    if(!this.note) {
+      this.note = this.video?.note;
+    }
+  }
 }
