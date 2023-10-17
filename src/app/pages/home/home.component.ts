@@ -3,6 +3,7 @@ import { SharedModule } from '@shared/modules';
 import { HttpClientModule } from '@angular/common/http';
 import { YoutubeService } from '@shared/services';
 import { VideoCardComponent, VideoNoteFormComponent } from '@components';
+import { Video } from '@shared/models';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { VideoCardComponent, VideoNoteFormComponent } from '@components';
     // modules
     SharedModule,
     HttpClientModule,
-    
+
     // components
     VideoCardComponent,
     VideoNoteFormComponent
@@ -26,7 +27,7 @@ export class HomeComponent {
 
 
   //#region variables
-  videos = [] as any[];
+  videos: Video[] = [];
   channelId!: string;
   loading: boolean = false;
   error: boolean = false;
@@ -71,7 +72,7 @@ export class HomeComponent {
 
   }
 
-  editNote(video: any) {
+  editNote(video: Video) {
 
   }
 }
