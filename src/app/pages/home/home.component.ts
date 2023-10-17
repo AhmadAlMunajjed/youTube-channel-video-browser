@@ -43,7 +43,21 @@ export class HomeComponent {
   initSortable() {
     const sortableElement = document.getElementById('sortableElement');
     if (sortableElement == null) return;
-    new Sortable(sortableElement, { animation: 200 });
+
+    var options: any = {
+      animation: 200,
+      handle: ".my-handle",
+      ghostClass: "ghost",
+      onSort: (evt: any) => {
+        console.log('from index: ' + evt.oldIndex + ' to index: ' + evt.newIndex);
+        setTimeout(() => {
+          var sortedVideos = sortable.toArray();
+          localStorage.setItem('videosOrder', JSON.stringify(sortedVideos));
+        }, 200);
+      }
+    };
+    var sortable = new Sortable(sortableElement, options);
+
   }
 
   fetchVideos() {
@@ -55,7 +69,6 @@ export class HomeComponent {
     this.videos = [];
     this.youtubeService.getVideos(this.channelId).then((res: any) => {
       this.loading = false;
-      console.log(res);
       res.items.map((item: any) => {
         this.videos.push({
           title: item.snippet.title,
@@ -65,13 +78,33 @@ export class HomeComponent {
           // immutableNote: this.getNote(item.id.videoId),
           editMode: false,
         });
-        setTimeout(() => {
-          this.initSortable();
-        }, 200);
       });
+
+      this.sortVideos();
+      setTimeout(() => {
+        this.initSortable();
+      }, 100);
     }, () => {
       this.loading = false;
       this.error = true;
+    });
+  }
+
+  sortVideos() {
+    var savedVideosOrderString = localStorage.getItem('videosOrder');
+    if (savedVideosOrderString == null) return;
+    var savedVideosOrder: any[] = JSON.parse(savedVideosOrderString);
+
+    this.videos.sort((a: Video, b: Video) => {
+      var aOrder = savedVideosOrder.findIndex(id => id == a.id);
+      var bOrder = savedVideosOrder.findIndex(id => id == b.id);
+
+      // If 'id' values are equal, compare the 'savedOrder' property
+      if (aOrder < bOrder) return -1;
+      if (aOrder > bOrder) return 1;
+
+      // If 'id' and 'savedOrder' values are equal, compare the original index in the array
+      return this.videos.indexOf(a) - this.videos.indexOf(b);
     });
   }
 

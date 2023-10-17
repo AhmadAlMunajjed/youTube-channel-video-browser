@@ -23,8 +23,8 @@
 </div>
 
 <div id="sortableElement" *ngIf="!loading" style="text-align: center;">
-    <div *ngFor="let video of videos" style="display: inline-block;">
-        <app-video-card (editCLicked)="video.editMode = true" *ngIf="!video.editMode" [video]="video"
+    <div *ngFor="let video of videos" [attr.data-id]="video.id" style="display: inline-block;">
+        <app-video-card class="my-handle" (editCLicked)="video.editMode = true" *ngIf="!video.editMode" [video]="video"
             style="display: inline-block;">
         </app-video-card>
 

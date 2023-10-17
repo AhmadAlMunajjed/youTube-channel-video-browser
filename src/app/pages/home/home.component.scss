@@ -18,3 +18,12 @@
     margin: 10px;
     background-color: red;
 }
+
+.my-handle {
+    cursor: move;
+    cursor: -webkit-grabbing;
+}
+
+.ghost {
+    opacity: 0.4;
+}
