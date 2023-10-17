@@ -3,4 +3,5 @@ export interface Video {
     title: string;
     imageUrl: string;
     editMode: boolean;
+    note?: string;
 }

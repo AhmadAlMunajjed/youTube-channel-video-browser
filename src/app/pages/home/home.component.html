@@ -28,7 +28,7 @@
             style="display: inline-block;">
         </app-video-card>
 
-        <app-video-note-form *ngIf="video.editMode" (saved)="editNote(video)" (canceld)="video.editMode = false"
+        <app-video-note-form *ngIf="video.editMode" (saved)="editNote($event, video)" (canceld)="video.editMode = false"
             [video]="video" style="display: inline-block;">
         </app-video-note-form>
     </div>

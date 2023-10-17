@@ -14,6 +14,6 @@ export class VideoNoteFormComponent {
 
   note!: string;
   @Input() video!: any;
-  @Output() saved = new EventEmitter();
+  @Output() saved = new EventEmitter<string>();
   @Output() canceld = new EventEmitter();
 }

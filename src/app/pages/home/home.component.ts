@@ -74,8 +74,7 @@ export class HomeComponent {
           title: item.snippet.title,
           imageUrl: item.snippet.thumbnails.default.url,
           id: item.id.videoId,
-          // note: this.getNote(item.id.videoId),
-          // immutableNote: this.getNote(item.id.videoId),
+          note: this.getNote(item.id.videoId),
           editMode: false,
         });
       });
@@ -112,7 +111,7 @@ export class HomeComponent {
 
   }
 
-  editNote(video: Video) {
-
+  editNote(note: string, video: Video) {
+    return '';
   }
 }

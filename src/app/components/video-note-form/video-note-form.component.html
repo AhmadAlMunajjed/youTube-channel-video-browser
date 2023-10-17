@@ -7,7 +7,7 @@
             <h6 class="title" [innerHTML]="video.title"></h6>
         </div>
         <div class="footer">
-            <button (click)="saved.emit()">Save</button>
+            <button (click)="saved.emit(note)">Save</button>
             <button (click)="canceld.emit()">Cancel</button>
         </div>
     </div>
