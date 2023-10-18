@@ -27,7 +27,6 @@ export class HomeComponent {
   //#region variables
   channelId!: string;
   editingVideoId: string | null = null;
-  @ViewChild('sortableElement') sortableElement!: ElementRef<HTMLElement>;
 
   @Select(VideoState.getVideos) videos$!: Observable<Video[]>;
   @Select(VideoState.isLoading) loading$!: Observable<boolean>;
@@ -52,7 +51,6 @@ export class HomeComponent {
 
   initSortable() {
     const sortableElement = document.getElementById('sortableElement');
-    // const sortableElement = this.sortableElement.nativeElement;
     console.log('sortableElement', sortableElement);
     if (sortableElement == null) return;
 

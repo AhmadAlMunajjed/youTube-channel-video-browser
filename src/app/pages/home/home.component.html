@@ -24,19 +24,17 @@
 
 <div id="sortableElement" #sortableElement *ngIf="!(loading$ | async) && !(error$ | async)" style="text-align: center;">
     <div *ngFor="let video of videos$ | async" [attr.data-id]="video.id" style="display: inline-block;">
-        <!-- Display video details -->
+        
         <app-video-card class="my-handle" (editCLicked)="toggleEditMode(video.id)"
             *ngIf="!isVideoEditModeEnabled(video.id)" [video]="video" style="display: inline-block;">
         </app-video-card>
 
-        <!-- Video note editing -->
         <app-video-note-form *ngIf="isVideoEditModeEnabled(video.id)" (saved)="editVideoNote(video.id, $event)"
             (canceld)="toggleEditMode(video.id)" [video]="video" style="display: inline-block;">
         </app-video-note-form>
 
     </div>
 
-    <!-- Sorting logic here, if needed -->
 </div>
 
 <div *ngIf="loading$ | async" class="loading">
