@@ -13,8 +13,8 @@
         <label>ex: UCz4tgANd4yy8Oe0iXCdSWfA</label>
     </div>
 
-    <div>
-        <label *ngIf="error" style="color: red;">An error accourd. Try again!</label>
+    <div *ngIf="error$ | async" class="error">
+        An error occurred. Please try again.
     </div>
 </div>
 
@@ -22,18 +22,21 @@
     <h4>Videos (You can reorder the videos, long press to be able to drag it.)</h4>
 </div>
 
-<div id="sortableElement" *ngIf="!loading" style="text-align: center;">
-    <div *ngFor="let video of videos" [attr.data-id]="video.id" style="display: inline-block;">
-        <app-video-card class="my-handle" (editCLicked)="video.editMode = true" *ngIf="!video.editMode" [video]="video"
-            style="display: inline-block;">
+<div id="sortableElement" #sortableElement *ngIf="!(loading$ | async) && !(error$ | async)" style="text-align: center;">
+    <div *ngFor="let video of videos$ | async" [attr.data-id]="video.id" style="display: inline-block;">
+        
+        <app-video-card class="my-handle" (editCLicked)="toggleEditMode(video.id)"
+            *ngIf="!isVideoEditModeEnabled(video.id)" [video]="video" style="display: inline-block;">
         </app-video-card>
 
-        <app-video-note-form *ngIf="video.editMode" (saved)="editNote($event, video)" (canceld)="video.editMode = false"
-            [video]="video" style="display: inline-block;">
+        <app-video-note-form *ngIf="isVideoEditModeEnabled(video.id)" (saved)="editVideoNote(video.id, $event)"
+            (canceld)="toggleEditMode(video.id)" [video]="video" style="display: inline-block;">
         </app-video-note-form>
+
     </div>
+
 </div>
 
-<div class="loading" *ngIf="loading">
-    loading...
+<div *ngIf="loading$ | async" class="loading">
+    Loading...
 </div>
