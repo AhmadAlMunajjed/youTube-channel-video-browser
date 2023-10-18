@@ -79,7 +79,8 @@ export class HomeComponent {
 
 
   editVideoNote(videoId: string, note: string): void {
-    this.store.dispatch(new EditVideoNote(videoId, note));
+    this.store.dispatch(new EditVideoNote(videoId, note ?? ''));
+    this.toggleEditMode(videoId);
   }
 
   /**
