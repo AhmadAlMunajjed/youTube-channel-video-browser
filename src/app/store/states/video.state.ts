@@ -37,11 +37,6 @@ export class VideoState {
     }
 
     @Selector()
-    static getSortedIndexes(state: VideoStateModel) {
-        return state.sortedIndexes;
-    }
-
-    @Selector()
     static isLoading(state: VideoStateModel) {
         return state.loading;
     }
