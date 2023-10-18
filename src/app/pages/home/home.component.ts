@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedModule } from '@shared/modules';
 import { VideoCardComponent, VideoNoteFormComponent } from '@components';
 import { Video } from '@shared/models';
@@ -37,7 +37,7 @@ export class HomeComponent {
   constructor(
     private store: Store
   ) {
-    
+
   }
 
   ngAfterViewInit(): void {
