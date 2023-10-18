@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment.development';
 
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { VideoState } from '@store/states';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +16,8 @@ import { VideoState } from '@store/states';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([VideoState], {
-      developmentMode: !environment.production
-    }),
+    HttpClientModule,
+    NgxsModule.forRoot([VideoState]),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],

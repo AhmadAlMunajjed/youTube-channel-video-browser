@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class YoutubeService {
 
   //#region varialbes
@@ -10,11 +13,11 @@ export class YoutubeService {
   //#endregion
 
   constructor(
-    private httpClient: HttpClient,
+    private http: HttpClient,
   ) { }
 
-  getVideos(channelId: string) {
-    return this.httpClient.get(this.getVideosApiUrl(channelId)).toPromise();
+  getVideos(channelId: string): Observable<any[]> {
+    return this.http.get<any[]>(this.getVideosApiUrl(channelId));
   }
 
   private getVideosApiUrl(channelId: string): string {
